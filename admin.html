@@ -1,84 +1,547 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Demo | 101 COFFEE </title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="admin-body">
-  <div class="admin-layout">
-    <aside class="admin-sidebar">
-      <div class="brand admin-brand">
-        <!-- مسار صورة الشعار الجديد الصحيح -->
-        <img src="logo.jpg" alt="شعار كريب أبو ليان" style="height: 40px; width: auto; border-radius: 8px; margin-left: 10px;">
-        <span><strong>101 COFFEE </strong><small>ADMIN DEMO</small></span>
-      </div>
-      <nav>
-        <a class="active" href="#dashboard">▦ لوحة التحكم</a>
-        <a href="#products">🍫 المنتجات</a>
-        <a href="#home-control">🏠 الصفحة الرئيسية</a>
-        <a href="#sections">↕ ترتيب الأقسام</a>
-        <a href="#settings">⚙ الإعدادات</a>
-      </nav>
-      <a class="back-site" href="index.html">← مشاهدة الموقع</a>
-    </aside>
-    <main class="admin-main">
-      <div class="admin-top"><div><span class="eyebrow">DEMO DASHBOARD</span><h1>لوحة التحكم</h1></div><span class="demo-pill">الاصدار 1.0 (MOHAMMED - MUSLIM )</span></div>
+* {
+  box-sizing: border-box;
+}
 
-      <section id="dashboard" class="stats-grid">
-        <div class="stat-card"><span>المنتجات</span><strong id="statProducts">0</strong><small>منتج</small></div>
-        <div class="stat-card"><span>الأقسام</span><strong id="statCategories">0</strong><small>قسم</small></div>
-        <div class="stat-card"><span>المميزات</span><strong id="statFeatured">0</strong><small>منتج مميز</small></div>
-        <div class="stat-card"><span>العروض</span><strong id="statOffers">0</strong><small>عرض</small></div>
-      </section>
+:root {
+  --green: #8FA052;
+  --green-dark: #566238;
+  --green-deep: #3F492B;
+  --cream: #FFF2B8;
+  --cream-light: #FFF9DC;
+  --beige: #F7F3E3;
+  --white: #FFFFFF;
+  --text: #30352A;
+  --muted: #777B6B;
+  --border: #DCDCCB;
+  --danger: #B85C50;
+  --shadow: 0 8px 25px rgba(63, 73, 43, 0.08);
+}
 
-      <section class="admin-card">
-        <div class="card-title"><div><span class="eyebrow">QUICK STATUS</span><h2>حالة استقبال الطلبات</h2></div><label class="switch"><input id="ordersToggle" type="checkbox"><span></span></label></div>
-        <p class="muted">عند الإيقاف لن يستطيع الزبون إرسال الطلب عبر واتساب.</p>
-      </section>
+body {
+  margin: 0;
+  font-family: Arial, Tahoma, sans-serif;
+  background: var(--beige);
+  color: var(--text);
+}
 
-      <section id="products" class="admin-card">
-        <div class="card-title"><div><span class="eyebrow">PRODUCTS</span><h2>إضافة منتج</h2></div></div>
-        <form id="productForm" class="admin-form">
-          <input type="hidden" name="id">
-          <div class="form-grid three"><label>اسم المنتج<input name="name" required></label><label>السعر<input name="price" type="number" min="0" required></label><label>القسم<select name="category" id="productCategory"></select></label></div>
-          <div class="form-grid three"><label>اسم ملف الصورة<input name="image" placeholder="nutella-crepe.jpg"></label><label>الوصف<input name="description" placeholder="وصف قصير للمنتج"></label><label>السعر القديم<input name="oldPrice" type="number" min="0"></label></div>
-          <div class="checks">
-            <label><input type="checkbox" name="featured"> ⭐ مميز</label><label><input type="checkbox" name="popular"> 🔥 الأكثر طلبًا</label><label><input type="checkbox" name="newItem"> 🆕 جديد</label><label><input type="checkbox" name="offer"> 🎁 عرض</label><label><input type="checkbox" name="discount"> 🏷️ خصم</label>
-          </div>
-          <div class="form-actions"><button class="primary-btn" type="submit" id="saveProductBtn">إضافة المنتج</button><button class="ghost-btn hidden" type="button" id="cancelEdit">إلغاء التعديل</button></div>
-        </form>
-      </section>
+/* =========================
+   ADMIN LAYOUT
+========================= */
 
-      <section class="admin-card">
-        <div class="card-title"><div><span class="eyebrow">PRODUCT LIST</span><h2>إدارة المنتجات</h2></div><input class="mini-search" id="adminSearch" placeholder="بحث..."></div>
-        <div class="admin-products" id="adminProducts"></div>
-      </section>
+.admin-layout {
+  min-height: 100vh;
+  display: flex;
+  background: var(--beige);
+}
 
-      <section id="home-control" class="admin-card">
-        <div class="card-title"><div><span class="eyebrow">HOME CONTROL</span><h2>التحكم بالصفحة الرئيسية</h2></div></div>
-        <div class="toggle-list" id="homeToggles"></div>
-      </section>
+/* =========================
+   SIDEBAR
+========================= */
 
-      <section id="sections" class="admin-card">
-        <div class="card-title"><div><span class="eyebrow">SECTION ORDER</span><h2>ترتيب الأقسام</h2></div></div>
-        <div class="section-order" id="sectionOrder"></div>
-      </section>
+.admin-sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: var(--green-deep);
+  color: var(--white);
+  padding: 24px 18px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
 
-      <section id="settings" class="admin-card">
-        <div class="card-title"><div><span class="eyebrow">SHOP SETTINGS</span><h2>إعدادات المحل</h2></div></div>
-        <form id="settingsForm" class="admin-form">
-          <div class="form-grid"><label>اسم المحل<input name="shopName"></label><label>رقم WhatsApp<input name="whatsapp"></label></div>
-          <div class="form-grid"><label>رقم الهاتف<input name="phone"></label><label>Instagram<input name="instagram"></label></div>
-          <div class="form-grid"><label>العنوان<input name="address"></label><label>Google Maps<input name="maps"></label></div>
-          <button class="primary-btn" type="submit">حفظ الإعدادات</button>
-        </form>
-      </section>
-      <p class="demo-note"الاصدار التجريبي  MOHAMMED MUSLIM 
-        .</p>
-    </main>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px 24px;
+  border-bottom: 1px solid rgba(255, 242, 184, 0.2);
+  margin-bottom: 20px;
+}
+
+.admin-brand img {
+  height: 45px !important;
+  width: 45px !important;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.admin-brand span {
+  display: flex;
+  flex-direction: column;
+  color: var(--cream);
+  font-size: 17px;
+}
+
+.admin-brand small {
+  color: rgba(255, 242, 184, 0.65);
+  font-size: 10px;
+  margin-top: 3px;
+  letter-spacing: 1px;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.admin-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.admin-sidebar nav a,
+.back-site {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.78);
+  padding: 13px 15px;
+  border-radius: 9px;
+  transition: 0.2s ease;
+  font-size: 14px;
+}
+
+.admin-sidebar nav a:hover,
+.admin-sidebar nav a.active {
+  background: var(--green);
+  color: var(--cream);
+}
+
+.back-site {
+  margin-top: auto;
+  background: rgba(255, 242, 184, 0.08);
+  border: 1px solid rgba(255, 242, 184, 0.15);
+  text-align: center;
+}
+
+.back-site:hover {
+  background: var(--cream);
+  color: var(--green-deep);
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.admin-main {
+  width: calc(100% - 260px);
+  margin-right: 260px;
+  padding: 35px;
+  max-width: 1500px;
+}
+
+.admin-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.admin-top h1 {
+  margin: 5px 0 0;
+  font-size: 30px;
+  color: var(--green-deep);
+}
+
+.eyebrow {
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  color: var(--green);
+}
+
+.demo-pill {
+  background: var(--cream);
+  color: var(--green-deep);
+  border: 1px solid #E6D98F;
+  padding: 9px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+}
+
+/* =========================
+   STAT CARDS
+========================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.stat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5px;
+  height: 100%;
+  background: var(--green);
+}
+
+.stat-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.stat-card strong {
+  display: block;
+  color: var(--green-deep);
+  font-size: 30px;
+  margin-bottom: 3px;
+}
+
+.stat-card small {
+  color: var(--muted);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.admin-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.card-title h2 {
+  margin: 5px 0 0;
+  color: var(--green-deep);
+  font-size: 20px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* =========================
+   SWITCH
+========================= */
+
+.switch {
+  position: relative;
+  width: 52px;
+  height: 28px;
+}
+
+.switch input {
+  display: none;
+}
+
+.switch span {
+  position: absolute;
+  inset: 0;
+  background: #D8D8CA;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.switch span::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 4px;
+  right: 4px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.25s;
+}
+
+.switch input:checked + span {
+  background: var(--green);
+}
+
+.switch input:checked + span::before {
+  transform: translateX(-24px);
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.form-grid.three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.admin-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--green-deep);
+}
+
+.admin-form input,
+.admin-form select,
+.mini-search {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: #FCFCF6;
+  border-radius: 9px;
+  padding: 12px 13px;
+  font-size: 13px;
+  outline: none;
+  color: var(--text);
+  transition: 0.2s;
+}
+
+.admin-form input:focus,
+.admin-form select:focus,
+.mini-search:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(143, 160, 82, 0.12);
+}
+
+/* =========================
+   CHECKBOXES
+========================= */
+
+.checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.checks label {
+  background: var(--cream-light);
+  border: 1px solid #E9DFAC;
+  padding: 10px 13px;
+  border-radius: 8px;
+  font-size: 12px;
+  cursor: pointer;
+  color: var(--green-deep);
+}
+
+.checks input {
+  accent-color: var(--green);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.primary-btn,
+.ghost-btn {
+  border: 0;
+  border-radius: 9px;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.primary-btn {
+  background: var(--green);
+  color: var(--cream);
+}
+
+.primary-btn:hover {
+  background: var(--green-dark);
+}
+
+.ghost-btn {
+  background: var(--cream);
+  color: var(--green-deep);
+  border: 1px solid #E5D995;
+}
+
+.ghost-btn:hover {
+  background: #F3E9A8;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================
+   PRODUCT SEARCH
+========================= */
+
+.mini-search {
+  width: 220px;
+}
+
+/* =========================
+   PRODUCT LIST
+========================= */
+
+.admin-products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.product-item {
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  padding: 15px;
+  background: #FCFCF6;
+}
+
+/* =========================
+   HOME TOGGLES
+========================= */
+
+.toggle-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toggle-list > * {
+  padding: 14px;
+  background: var(--cream-light);
+  border: 1px solid #E9DFAC;
+  border-radius: 9px;
+}
+
+/* =========================
+   SECTION ORDER
+========================= */
+
+.section-order {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section-order > * {
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  background: #FCFCF6;
+  border-radius: 9px;
+}
+
+/* =========================
+   NOTE
+========================= */
+
+.demo-note {
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  padding: 10px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+  .admin-sidebar {
+    width: 210px;
+  }
+
+  .admin-main {
+    width: calc(100% - 210px);
+    margin-right: 210px;
+    padding: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-grid.three {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-products {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+
+  .admin-sidebar {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+  }
+
+  .admin-layout {
+    display: block;
+  }
+
+  .admin-main {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .admin-sidebar nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .admin-sidebar nav a {
+    flex: 1;
+    min-width: 130px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .mini-search {
+    width: 100%;
+  }
+}
