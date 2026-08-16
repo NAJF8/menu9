@@ -98,7 +98,7 @@ function updateCheckoutSummary(){
   el.innerHTML=`<div class="summary-line"><span>مجموع المنتجات</span><strong>${money(subtotal)}</strong></div><div class="summary-line"><span>التوصيل</span><strong>${money(delivery)}</strong></div><hr><div class="summary-line"><span>المجموع النهائي</span><strong>${money(subtotal+delivery)}</strong></div>`;
 }
 function showCheckout(){if(!cart.length)return alert("السلة فارغة.");if(!ordersOpen)return alert("الطلبات متوقفة حاليًا، يرجى المحاولة لاحقًا.");document.getElementById("checkoutModal").classList.add("open");updateCheckoutSummary()}
-function applySettings(){document.title=`${settings.shopName||"COFFEE -101"} | CREPE ABU LAYAN`}
+function applySettings(){document.title=`${settings.shopName||"COFFEE -101"} | `}
 function initAdmin(){
   if(!document.getElementById("statProducts"))return;
   document.getElementById("statProducts").textContent=products.length;document.getElementById("statCategories").textContent=new Set(products.map(p=>p.category)).size;document.getElementById("statFeatured").textContent=products.filter(p=>p.featured).length;document.getElementById("statOffers").textContent=products.filter(p=>p.offer).length;document.getElementById("ordersToggle").checked=ordersOpen;
