@@ -19,7 +19,7 @@ const defaultProducts = [
 ["موز فراولة","مكس عصير",3500],["موز منكا","مكس عصير",3500],["برتقال أناناس","مكس عصير",3500],["برتقال ليمون","مكس عصير",3500],["ليمون نعناع","مكس عصير",3500],["عصير أبو ليان","مكس عصير",4000],["عصير كوكتيل","مكس عصير",4000],
 ["موهيتو بلو","موهيتو",3500],["موهيتو روز بيري","موهيتو",3500],["موهيتو باشن فروت","موهيتو",3500],["موهيتو فراولة","موهيتو",3500],["موهيتو علك بوبّي","موهيتو",3500],["موهيتو أبو ليان","موهيتو",4500],["موهيتو ريد بول","موهيتو",4500],
 ["آيس لاتيه","آيس لاتيه",4000],["آيس لاتيه كراميل","آيس لاتيه",4000],["آيس لاتيه سبانش","آيس لاتيه",4000],["آيس لاتيه توفي","آيس لاتيه",4000],["آيس لاتيه بستاشيو","آيس لاتيه",4000],["آيس لاتيه بستاشيو فراولة","آيس لاتيه",4000],["آيس لاتيه أبو ليان","آيس لاتيه",4000]
-].map((x,i)=>({id:i+1,name:x[0],category:x[1],price:x[2],image:"",description:"طعم لذيذ ومحضر بعناية من كريب أبو ليان.",featured:i<4,popular:i===0||i===2,newItem:i===6,offer:i===3,discount:false,oldPrice:0,hidden:false}));
+].map((x,i)=>({id:i+1,name:x[0],category:x[1],price:x[2],image:"",description:"طعم لذيذ ومحضر بعناية من 101 COFFEE.",featured:i<4,popular:i===0||i===2,newItem:i===6,offer:i===3,discount:false,oldPrice:0,hidden:false}));
 
 const defaults = {
   products: defaultProducts,
@@ -27,7 +27,7 @@ const defaults = {
   ordersOpen: true,
   homeSections:{featured:true,popular:true,newItem:true,offer:true,discount:true},
   sectionOrder:["⭐ المميز","🎁 العروض","🔥 الأكثر طلبًا","🆕 الجديد","🍫 الكريب","🧇 الوافل","🥤 المشروبات"],
-  settings:{shopName:"كريب أبو ليان",whatsapp:whatsappNumber,phone:"",instagram:"",address:"النجف",maps:""}
+  settings:{shopName:"COFFEE - 101",whatsapp:whatsappNumber,phone:"",instagram:"",address:"النجف",maps:""}
 };
 const load = (k, fallback) => { try { const v=localStorage.getItem("cbl_"+k); return v?JSON.parse(v):fallback } catch(e){return fallback} };
 const save=(k,v)=>localStorage.setItem("cbl_"+k,JSON.stringify(v));
@@ -98,7 +98,7 @@ function updateCheckoutSummary(){
   el.innerHTML=`<div class="summary-line"><span>مجموع المنتجات</span><strong>${money(subtotal)}</strong></div><div class="summary-line"><span>التوصيل</span><strong>${money(delivery)}</strong></div><hr><div class="summary-line"><span>المجموع النهائي</span><strong>${money(subtotal+delivery)}</strong></div>`;
 }
 function showCheckout(){if(!cart.length)return alert("السلة فارغة.");if(!ordersOpen)return alert("الطلبات متوقفة حاليًا، يرجى المحاولة لاحقًا.");document.getElementById("checkoutModal").classList.add("open");updateCheckoutSummary()}
-function applySettings(){document.title=`${settings.shopName||"كريب أبو ليان"} | CREPE ABU LAYAN`}
+function applySettings(){document.title=`${settings.shopName||"COFFEE -101"} | CREPE ABU LAYAN`}
 function initAdmin(){
   if(!document.getElementById("statProducts"))return;
   document.getElementById("statProducts").textContent=products.length;document.getElementById("statCategories").textContent=new Set(products.map(p=>p.category)).size;document.getElementById("statFeatured").textContent=products.filter(p=>p.featured).length;document.getElementById("statOffers").textContent=products.filter(p=>p.offer).length;document.getElementById("ordersToggle").checked=ordersOpen;
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.getElementById("checkoutForm")?.addEventListener("submit",e=>{
     e.preventDefault();if(!ordersOpen)return alert("الطلبات متوقفة حاليًا.");
     const f=new FormData(e.target),type=f.get("type"),subtotal=cart.reduce((s,r)=>{const p=products.find(x=>x.id===r.id);return s+(p?p.price*r.qty:0)},0),delivery=type==="delivery"?Number(deliveryAreas.find(a=>a.name===f.get("area"))?.price||0):0;
-    let msg=`السلام عليكم 🌹\n\nأريد طلب من ${settings.shopName||"كريب أبو ليان"}:\n\n`;cart.forEach(r=>{const p=products.find(x=>x.id===r.id);if(p)msg+=`🍰 ${p.name} × ${r.qty}\n${money(p.price*r.qty)}\n\n`});msg+=`💰 مجموع المنتجات: ${money(subtotal)}\n🚚 التوصيل: ${money(delivery)}\n💵 المجموع النهائي: ${money(subtotal+delivery)}\n\n👤 الاسم: ${f.get("name")}\n📱 الهاتف: ${f.get("phone")}\n`;if(type==="delivery")msg+=`📍 المنطقة: ${f.get("area")}\n🏠 العنوان: ${f.get("address")}\n📌 أقرب نقطة دالة: ${f.get("landmark")}\n📝 الملاحظات: ${f.get("notes")||"-"}\n`;msg+=`\nشكراً 🤎`;
+    let msg=`السلام عليكم 🌹\n\nأريد طلب من ${settings.shopName||"COFFEE -101"}:\n\n`;cart.forEach(r=>{const p=products.find(x=>x.id===r.id);if(p)msg+=`🍰 ${p.name} × ${r.qty}\n${money(p.price*r.qty)}\n\n`});msg+=`💰 مجموع المنتجات: ${money(subtotal)}\n🚚 التوصيل: ${money(delivery)}\n💵 المجموع النهائي: ${money(subtotal+delivery)}\n\n👤 الاسم: ${f.get("name")}\n📱 الهاتف: ${f.get("phone")}\n`;if(type==="delivery")msg+=`📍 المنطقة: ${f.get("area")}\n🏠 العنوان: ${f.get("address")}\n📌 أقرب نقطة دالة: ${f.get("landmark")}\n📝 الملاحظات: ${f.get("notes")||"-"}\n`;msg+=`\nشكراً 🤎`;
     const num=(settings.whatsapp||whatsappNumber).replace(/\D/g,"");window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`,"_blank");
   });
 });
