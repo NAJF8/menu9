@@ -6,55 +6,60 @@
   <meta name="theme-color" content="#445842">
   <title>101 COFFEE</title>
   <link rel="stylesheet" href="style.css">
-  
-  <!-- ألوان هوية 101 COFFEE لواجهة الزبون -->
   <style>
-    :root {
-      --coffee-green: #445842; /* الأخضر الزيتي الأساسي */
-      --coffee-beige: #E1C59F; /* البيج الذهبي */
-      --coffee-bg: #F7F5F0;    /* خلفية بيج فاتحة مريحة للعين */
-      --coffee-dark: #2A3628;  /* أخضر داكن للنصوص */
+    /* إضافة الشعار داخل الشكل البيضوي وتنسيقه */
+    .hero-blob {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .blob-logo {
+      width: 65%;
+      height: auto;
+      border-radius: 50%;
+      box-shadow: 0 15px 35px rgba(68, 88, 66, 0.3);
+      object-fit: cover;
+      aspect-ratio: 1/1;
+      transition: transform 0.3s ease;
+    }
+    .blob-logo:hover {
+      transform: scale(1.05);
     }
 
-    /* تعديل الخلفية العامة للموقع */
-    body { background-color: var(--coffee-bg) !important; color: var(--coffee-dark); }
+    /* تطويخ عنوان "المنيو" والعناوين الرئيسية */
+    h1, h2, .catalog-head h2, .section-heading h2 {
+      font-weight: 900 !important;
+      color: #1a2219 !important;
+    }
 
-    /* تعديل الشريط العلوي (الهيدر) */
-    .site-header { background-color: var(--coffee-green) !important; border-bottom: 2px solid var(--coffee-beige); }
-    .site-header .brand span strong { color: var(--coffee-beige) !important; }
-    .site-header .brand span small { color: #ffffff !important; opacity: 0.8; }
-    .header-actions button { color: var(--coffee-beige) !important; }
-    #cartCount { background-color: var(--coffee-beige) !important; color: var(--coffee-green) !important; }
+    /* تطويخ نصوص البطاقة العائمة */
+    .hero-card strong {
+      font-weight: 900 !important;
+      color: #1a2219 !important;
+    }
+    .hero-card span {
+      font-weight: bold !important;
+      color: #445842 !important;
+    }
+    .hero-card small {
+      font-weight: bold !important;
+    }
 
-    /* تعديل القسم الترحيبي (Hero) */
-    .hero { background-color: var(--coffee-green) !important; color: var(--coffee-beige) !important; }
-    .hero h1, .hero p, .hero .eyebrow { color: var(--coffee-beige) !important; }
-    .hero-blob { background-color: rgba(225, 197, 159, 0.1) !important; }
-
-    /* تعديل الأزرار الأساسية */
-    .primary-btn { background-color: var(--coffee-green) !important; color: var(--coffee-beige) !important; border: 1px solid var(--coffee-beige); }
-    .primary-btn:hover { background-color: #354533 !important; }
-    .whatsapp-btn { background-color: var(--coffee-green) !important; color: var(--coffee-beige) !important; }
-
-    /* تعديل العناوين والنصوص البارزة */
-    .section-heading h2, .catalog-head h2 { color: var(--coffee-green) !important; }
-    .eyebrow { color: var(--coffee-green) !important; }
-
-    /* تعديل الفوتر (أسفل الموقع) */
-    .site-footer { background-color: var(--coffee-green) !important; color: var(--coffee-beige) !important; border-top: 2px solid var(--coffee-beige); }
-    .site-footer strong, .site-footer small, .site-footer p { color: var(--coffee-beige) !important; }
-    
-    /* تعديل السلة والنوافذ المنبثقة */
-    .drawer-head, .modal-title { color: var(--coffee-green) !important; }
+    /* تطويخ زر تصفح المنيو والأزرار */
+    .primary-btn {
+      font-weight: bold !important;
+      letter-spacing: 0.5px;
+    }
   </style>
-
 </head>
 <body>
-<header class="site-header">
+  <header class="site-header">
     <a class="brand" href="#home">
       <!-- الشعار -->
-      <img src="logo.jpg" alt="101 COFFEE" style="height: 50px; width: auto; border-radius: 8px;">
-      <span><strong>101 COFFEE</strong><small>101 COFFEE</small></span>
+      <img src="logo.jpg" alt="شعار 101 كوفي" style="height: 50px; width: auto; border-radius: 8px;">
+      <span><strong>101 COFFEE</strong><small>COFFEE HOUSE</small></span>
     </a>
     <div class="header-actions">
       <button class="icon-btn" id="searchBtn" aria-label="البحث">⌕</button>
@@ -65,13 +70,15 @@
   <main id="home">
     <section class="hero">
       <div class="hero-copy">
-        <span class="eyebrow">COFFEE • DESSERTS • DRINKS</span>
-        <h1>مزاجك يستاهل<br><em>101 COFFEE</em> ☕</h1>
-        <p>اختار طلبك واستمتع بأشهى أنواع القهوة، الحلويات، والمشروبات الباردة</p>
+        <span class="eyebrow">COFFEE • SWEETS • DRINKS</span>
+        <h1>مزاجك يستاهل<br><em>101 COFFEE</em> 🤎</h1>
+        <p>اختار طلبك واستمتع بأشهى أنواع القهوة والمشروبات</p>
         <button class="primary-btn" id="menuBtn">تصفح المنيو <span>←</span></button>
       </div>
       <div class="hero-art">
-        <div class="hero-blob"></div>
+        <div class="hero-blob">
+          <img src="logo.jpg" alt="101 Coffee" class="blob-logo">
+        </div>
         <div class="hero-card"><span>الأكثر طلبًا</span><strong>Spanish Latte</strong><small>من 3,500 د.ع</small></div>
         <div class="floating-dot dot-one">☕</div>
         <div class="floating-dot dot-two">🧊</div>
@@ -89,15 +96,15 @@
     <section class="catalog container" id="catalog">
       <div class="catalog-head">
         <div><span class="eyebrow">OUR MENU</span><h2>المنيو</h2></div>
-        <div class="search-wrap" id="searchWrap"><input id="searchInput" type="search" placeholder="ابحث عن لاتيه، امريكانو..." autocomplete="off"></div>
+        <div class="search-wrap" id="searchWrap"><input id="searchInput" type="search" placeholder="ابحث عن سبانش، لاتيه..." autocomplete="off"></div>
       </div>
       <div id="productsGrid" class="products-grid"></div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div><strong>101 COFFEE</strong><p>طعم يستاهل مزاجك ☕</p></div>
-    <div><small>101 COFFEE</small><p>MOHAMMED MUSLIM  —  الاصدار 1.0 التجريبي</p></div>
+    <div><strong>101 COFFEE</strong><p>طعم يستاهل مزاجك 🤎</p></div>
+    <div><small>COFFEE HOUSE</small><p>Demo Website — نسخة تجريبية</p></div>
   </footer>
 
   <div class="modal-backdrop" id="productModal"><div class="modal product-modal"><button class="close-btn" data-close>×</button><div id="productDetail"></div></div></div>
