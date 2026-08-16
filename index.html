@@ -3,10 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- تم تعديل هذا اللون ليطابق لون الشعار الأخضر الزيتي بدلاً من اللون القديم -->
   <meta name="theme-color" content="#445842">
   <title>101 COFFEE</title>
   <link rel="stylesheet" href="style.css">
+  
+  <!-- ألوان هوية 101 COFFEE لواجهة الزبون -->
+  <style>
+    :root {
+      --coffee-green: #445842; /* الأخضر الزيتي الأساسي */
+      --coffee-beige: #E1C59F; /* البيج الذهبي */
+      --coffee-bg: #F7F5F0;    /* خلفية بيج فاتحة مريحة للعين */
+      --coffee-dark: #2A3628;  /* أخضر داكن للنصوص */
+    }
+
+    /* تعديل الخلفية العامة للموقع */
+    body { background-color: var(--coffee-bg) !important; color: var(--coffee-dark); }
+
+    /* تعديل الشريط العلوي (الهيدر) */
+    .site-header { background-color: var(--coffee-green) !important; border-bottom: 2px solid var(--coffee-beige); }
+    .site-header .brand span strong { color: var(--coffee-beige) !important; }
+    .site-header .brand span small { color: #ffffff !important; opacity: 0.8; }
+    .header-actions button { color: var(--coffee-beige) !important; }
+    #cartCount { background-color: var(--coffee-beige) !important; color: var(--coffee-green) !important; }
+
+    /* تعديل القسم الترحيبي (Hero) */
+    .hero { background-color: var(--coffee-green) !important; color: var(--coffee-beige) !important; }
+    .hero h1, .hero p, .hero .eyebrow { color: var(--coffee-beige) !important; }
+    .hero-blob { background-color: rgba(225, 197, 159, 0.1) !important; }
+
+    /* تعديل الأزرار الأساسية */
+    .primary-btn { background-color: var(--coffee-green) !important; color: var(--coffee-beige) !important; border: 1px solid var(--coffee-beige); }
+    .primary-btn:hover { background-color: #354533 !important; }
+    .whatsapp-btn { background-color: var(--coffee-green) !important; color: var(--coffee-beige) !important; }
+
+    /* تعديل العناوين والنصوص البارزة */
+    .section-heading h2, .catalog-head h2 { color: var(--coffee-green) !important; }
+    .eyebrow { color: var(--coffee-green) !important; }
+
+    /* تعديل الفوتر (أسفل الموقع) */
+    .site-footer { background-color: var(--coffee-green) !important; color: var(--coffee-beige) !important; border-top: 2px solid var(--coffee-beige); }
+    .site-footer strong, .site-footer small, .site-footer p { color: var(--coffee-beige) !important; }
+    
+    /* تعديل السلة والنوافذ المنبثقة */
+    .drawer-head, .modal-title { color: var(--coffee-green) !important; }
+  </style>
+
 </head>
 <body>
 <header class="site-header">
