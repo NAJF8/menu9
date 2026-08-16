@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Demo | كريب أبو ليان</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <div class="brand admin-brand">
+        <!-- مسار صورة الشعار الجديد -->
+        <img src="images/logo.jpg" alt="شعار كريب أبو ليان" style="height: 40px; width: auto; border-radius: 8px; margin-left: 10px;">
+        <span><strong>كريب أبو ليان</strong><small>ADMIN DEMO</small></span>
+      </div>
+      <nav>
+        <a class="active" href="#dashboard">▦ لوحة التحكم</a>
+        <a href="#products">🍫 المنتجات</a>
+        <a href="#home-control">🏠 الصفحة الرئيسية</a>
+        <a href="#sections">↕ ترتيب الأقسام</a>
+        <a href="#settings">⚙ الإعدادات</a>
+      </nav>
+      <a class="back-site" href="index.html">← مشاهدة الموقع</a>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-top"><div><span class="eyebrow">DEMO DASHBOARD</span><h1>لوحة التحكم</h1></div><span class="demo-pill">نسخة تجريبية فقط</span></div>
+
+      <section id="dashboard" class="stats-grid">
+        <div class="stat-card"><span>المنتجات</span><strong id="statProducts">0</strong><small>منتج</small></div>
+        <div class="stat-card"><span>الأقسام</span><strong id="statCategories">0</strong><small>قسم</small></div>
+        <div class="stat-card"><span>المميزات</span><strong id="statFeatured">0</strong><small>منتج مميز</small></div>
+        <div class="stat-card"><span>العروض</span><strong id="statOffers">0</strong><small>عرض</small></div>
+      </section>
+
+      <section class="admin-card">
+        <div class="card-title"><div><span class="eyebrow">QUICK STATUS</span><h2>حالة استقبال الطلبات</h2></div><label class="switch"><input id="ordersToggle" type="checkbox"><span></span></label></div>
+        <p class="muted">عند الإيقاف لن يستطيع الزبون إرسال الطلب عبر واتساب.</p>
+      </section>
+
+      <section id="products" class="admin-card">
+        <div class="card-title"><div><span class="eyebrow">PRODUCTS</span><h2>إضافة منتج</h2></div></div>
+        <form id="productForm" class="admin-form">
+          <input type="hidden" name="id">
+          <div class="form-grid three"><label>اسم المنتج<input name="name" required></label><label>السعر<input name="price" type="number" min="0" required></label><label>القسم<select name="category" id="productCategory"></select></label></div>
+          <div class="form-grid three"><label>اسم ملف الصورة<input name="image" placeholder="images/nutella-crepe.jpg"></label><label>الوصف<input name="description" placeholder="وصف قصير للمنتج"></label><label>السعر القديم<input name="oldPrice" type="number" min="0"></label></div>
+          <div class="checks">
+            <label><input type="checkbox" name="featured"> ⭐ مميز</label><label><input type="checkbox" name="popular"> 🔥 الأكثر طلبًا</label><label><input type="checkbox" name="newItem"> 🆕 جديد</label><label><input type="checkbox" name="offer"> 🎁 عرض</label><label><input type="checkbox" name="discount"> 🏷️ خصم</label>
+          </div>
+          <div class="form-actions"><button class="primary-btn" type="submit" id="saveProductBtn">إضافة المنتج</button><button class="ghost-btn hidden" type="button" id="cancelEdit">إلغاء التعديل</button></div>
+        </form>
+      </section>
+
+      <section class="admin-card">
+        <div class="card-title"><div><span class="eyebrow">PRODUCT LIST</span><h2>إدارة المنتجات</h2></div><input class="mini-search" id="adminSearch" placeholder="بحث..."></div>
+        <div class="admin-products" id="adminProducts"></div>
+      </section>
+
+      <section id="home-control" class="admin-card">
+        <div class="card-title"><div><span class="eyebrow">HOME CONTROL</span><h2>التحكم بالصفحة الرئيسية</h2></div></div>
+        <div class="toggle-list" id="homeToggles"></div>
+      </section>
+
+      <section id="sections" class="admin-card">
+        <div class="card-title"><div><span class="eyebrow">SECTION ORDER</span><h2>ترتيب الأقسام</h2></div></div>
+        <div class="section-order" id="sectionOrder"></div>
+      </section>
+
+      <section id="settings" class="admin-card">
+        <div class="card-title"><div><span class="eyebrow">SHOP SETTINGS</span><h2>إعدادات المحل</h2></div></div>
+        <form id="settingsForm" class="admin-form">
+          <div class="form-grid"><label>اسم المحل<input name="shopName"></label><label>رقم WhatsApp<input name="whatsapp"></label></div>
+          <div class="form-grid"><label>رقم الهاتف<input name="phone"></label><label>Instagram<input name="instagram"></label></div>
+          <div class="form-grid"><label>العنوان<input name="address"></label><label>Google Maps<input name="maps"></label></div>
+          <button class="primary-btn" type="submit">حفظ الإعدادات</button>
+        </form>
+      </section>
+      <p class="demo-note">هذه لوحة Demo تعمل محليًا باستخدام LocalStorage. لا توجد قاعدة بيانات أو Backend.</p>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f6f6b">
+  <title>كريب أبو ليان | CREPE ABU LAYAN</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+    <a class="brand" href="#home">
+      <!-- الشعار -->
+      <img src="images/logo.jpg" alt="شعار كريب أبو ليان" style="height: 50px; width: auto; border-radius: 8px;">
+      <span><strong>كريب أبو ليان</strong><small>CREPE ABU LAYAN</small></span>
+    </a>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchBtn" aria-label="البحث">⌕</button>
+      <button class="cart-btn" id="cartBtn">🛒 <span>السلة</span><b id="cartCount">0</b></button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">CREPE • WAFFLE • DRINKS</span>
+        <h1>مزاجك يستاهل<br><em>كريب أبو ليان</em> 🤎</h1>
+        <p>اختار طلبك واستمتع بأشهى الكريب والوافل والمشروبات</p>
+        <button class="primary-btn" id="menuBtn">تصفح المنيو <span>←</span></button>
+      </div>
+      <div class="hero-art">
+        <div class="hero-blob"></div>
+        <div class="hero-card"><span>الأكثر طلبًا</span><strong>Nutella Crepe</strong><small>من 3,000 د.ع</small></div>
+        <div class="floating-dot dot-one">🍓</div>
+        <div class="floating-dot dot-two">🍫</div>
+      </div>
+    </section>
+
+    <section class="quick-section container">
+      <div class="section-heading">
+        <div><span class="eyebrow">DISCOVER</span><h2>اختار مزاجك</h2></div>
+      </div>
+      <div class="category-scroller" id="categoryNav"></div>
+    </section>
+
+    <section class="featured-area container" id="featuredArea"></section>
+    <section class="catalog container" id="catalog">
+      <div class="catalog-head">
+        <div><span class="eyebrow">OUR MENU</span><h2>المنيو</h2></div>
+        <div class="search-wrap" id="searchWrap"><input id="searchInput" type="search" placeholder="ابحث عن نوتيلا، لوتس..." autocomplete="off"></div>
+      </div>
+      <div id="productsGrid" class="products-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><strong>كريب أبو ليان</strong><p>طعم يستاهل مزاجك 🤎</p></div>
+    <div><small>CREPE ABU LAYAN</small><p>Demo Website — نسخة تجريبية</p></div>
+  </footer>
+
+  <div class="modal-backdrop" id="productModal"><div class="modal product-modal"><button class="close-btn" data-close>×</button><div id="productDetail"></div></div></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="drawer-head"><div><span class="eyebrow">YOUR ORDER</span><h2>سلتك</h2></div><button class="close-btn" id="closeCart">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="total-line"><span>المجموع</span><strong id="cartTotal">0 د.ع</strong></div>
+      <button class="primary-btn full" id="checkoutBtn">إتمام الطلب</button>
+    </div>
+  </aside>
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+  <div class="modal-backdrop" id="checkoutModal"><div class="modal checkout-modal"><button class="close-btn" data-close>×</button>
+    <div class="modal-title"><span class="eyebrow">CHECKOUT</span><h2>معلومات الطلب</h2><p>Demo فقط — لا يوجد دفع إلكتروني.</p></div>
+    <form id="checkoutForm">
+      <div class="form-grid">
+        <label>الاسم<input name="name" required placeholder="محمد"></label>
+        <label>رقم الهاتف<input name="phone" required placeholder="07XXXXXXXXX"></label>
+      </div>
+      <label>نوع الطلب</label>
+      <div class="order-types"><label><input type="radio" name="type" value="pickup" checked> استلام من المحل</label><label><input type="radio" name="type" value="delivery"> توصيل</label></div>
+      <div id="deliveryFields" class="delivery-fields hidden">
+        <label>المنطقة<select name="area" id="areaSelect"></select></label>
+        <div class="form-grid"><label>العنوان<input name="address" placeholder="الشارع، رقم الدار..."></label><label>أقرب نقطة دالة<input name="landmark" placeholder="قرب..."></label></div>
+        <label>ملاحظات<textarea name="notes" rows="3" placeholder="أي ملاحظات على الطلب"></textarea></label>
+      </div>
+      <div class="checkout-summary" id="checkoutSummary"></div>
+      <button class="whatsapp-btn full" type="submit">إرسال الطلب عبر واتساب 📱</button>
+    </form>
+  </div></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
